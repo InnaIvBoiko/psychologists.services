@@ -1,0 +1,71 @@
+.mainHeader {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.mainHeader::after {
+  position: absolute;
+  content: '';
+  width: 1440px;
+  height: 1px;
+  background-color: rgba(25, 26, 21, 0.1);
+  bottom: 0;
+  left: -128px;
+}
+
+.navWrap {
+  display: flex;
+}
+
+.navMenu {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-left: 190px;
+}
+
+.navMenuItem {
+  position: relative;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  padding: 12px 0;
+}
+
+.active::after {
+  position: absolute;
+  bottom: 0;
+  left: calc((100% - 8px) / 2);
+  content: ' ';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #54be96;
+}
+
+.registrationBtn {
+  border: none;
+  border-radius: 30px;
+  padding: 14px 40px;
+  width: 171px;
+  height: 48px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+  background-color: #54be96;
+  transition: background-color 500ms linear;
+}
+
+.auth {
+  display: flex;
+  gap: 8px;
+}
+
+.registrationBth:hover,
+.registrationBtn:focus {
+  background-color: #36a379;
+}

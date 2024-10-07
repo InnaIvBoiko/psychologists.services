@@ -1,0 +1,12 @@
+.text {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #191a15;
+}
+
+.accent {
+  font-weight: 700;
+  color: #54be96;
+}

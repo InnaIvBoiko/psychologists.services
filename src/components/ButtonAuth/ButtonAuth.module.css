@@ -10,4 +10,11 @@
   line-height: 1.25;
   letter-spacing: -0.01em;
   background-color: transparent;
+  transition: background-color 500ms linear, color 500ms linear;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #36a379;
+  color: #fbfbfb;
 }

@@ -6,7 +6,7 @@ import css from './NotFoundPage.module.css';
 export default function NotFoundPage() {
     return (
         <section className={css.container}>
-             <MdOutlinePsychology style = {{ color: '#54be96', width: '48px', height: '48px'  }} />
+             <MdOutlinePsychology style = {{ color: '#54be96', width: '60px', height: '60px'  }} />
             <p>Opps! Page not found! Sorry!</p>
             <p>
                 Please visit out

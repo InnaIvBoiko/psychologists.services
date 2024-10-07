@@ -34,6 +34,11 @@
   padding: 12px 0;
 }
 
+.navMenuItem:hover,
+.navMenuItem:focus {
+  color: #54be96;
+}
+
 .active::after {
   position: absolute;
   bottom: 0;
@@ -65,7 +70,7 @@
   gap: 8px;
 }
 
-.registrationBth:hover,
+.registrationBtn:hover,
 .registrationBtn:focus {
   background-color: #36a379;
 }

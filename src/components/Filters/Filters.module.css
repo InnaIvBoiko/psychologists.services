@@ -1,0 +1,30 @@
+.filters {
+  margin-bottom: 32px;
+}
+.title {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  color: #8a8a89;
+  margin-bottom: 8px;
+}
+
+.toggler {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 14px;
+  padding: 16px 18px;
+  width: 226px;
+  height: 48px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fbfbfb;
+  background-color: #54be96;
+}
+
+.arrowBtn {
+  border: none;
+  background-color: transparent;
+}

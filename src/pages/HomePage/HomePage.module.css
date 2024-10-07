@@ -56,13 +56,11 @@
 
 .photo {
   position: relative;
-  width: 565px;
+  width: 464px;
   height: 526px;
   border-radius: 10px;
   margin-top: 78px;
   background-image: url(/public/bg.jpg);
-  left: 100px;
-  top: 0;
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -121,7 +119,7 @@
 .orange {
   position: absolute;
   top: 38px;
-  right: 64px;
+  right: -40px;
   display: flex;
   justify-content: center;
   align-items: center;

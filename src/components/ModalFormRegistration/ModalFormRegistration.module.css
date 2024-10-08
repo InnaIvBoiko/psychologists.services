@@ -1,0 +1,71 @@
+.closeBtn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.titleModal {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.textModal {
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.5);
+  max-width: 430px;
+  margin-bottom: 40px;
+}
+
+.btnSubmit {
+  border: none;
+  border-radius: 30px;
+  padding: 16px;
+  width: 100%;
+  height: 52px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+  background-color: #54be96;
+  transition: background-color 500ms linear;
+  margin-top: 40px;
+}
+
+.field {
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px;
+  width: 100%;
+  height: 52px;
+}
+
+.field:nth-child(n + 2) {
+  margin-top: 18px;
+}
+
+.errText {
+  color: #54be96;
+}
+
+.passwordWrap {
+  position: relative;
+  margin-top: 18px;
+}
+
+.btnIsVisible {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 16px;
+  left: 392px;
+}
+
+.btnSubmit:hover,
+.btnSubmit:focus {
+  background-color: #36a379;
+}

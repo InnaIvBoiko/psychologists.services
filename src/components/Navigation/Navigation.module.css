@@ -18,6 +18,7 @@
 
 .navWrap {
   display: flex;
+  align-items: center;
 }
 
 .navMenu {
@@ -31,7 +32,6 @@
   position: relative;
   line-height: 1.25;
   letter-spacing: -0.01em;
-  padding: 12px 0;
 }
 
 .navMenuItem:hover,
@@ -41,7 +41,7 @@
 
 .active::after {
   position: absolute;
-  bottom: 0;
+  bottom: -12px;
   left: calc((100% - 8px) / 2);
   content: ' ';
   width: 8px;

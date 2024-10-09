@@ -2,3 +2,29 @@
   margin-top: 64px;
   margin-bottom: 100px;
 }
+
+.spinner {
+  margin-top: 24px;
+}
+
+.loadMoreBtn {
+  display: block;
+  margin: 0 auto;
+  border-radius: 30px;
+  padding: 14px 48px;
+  width: 176px;
+  height: 48px;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+  background-color: #54be96;
+  transition: background-color 500ms linear;
+}
+
+.loadMoreBtn:hover,
+.loadMoreBtn:focus {
+  background-color: #36a379;
+}

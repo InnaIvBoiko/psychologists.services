@@ -1,8 +1,10 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
+  apiKey: 'AIzaSyC6mcH88tk5nYhdydPUpXrN4qdQfwLo_KQ',
+  // apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
   databaseURL: 'https://psychologists-services-a-101b9-default-rtdb.europe-west1.firebasedatabase.app/',
   projectId: import.meta.env.VITE_PROJECT_ID,
@@ -15,3 +17,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
+export const auth = getAuth(app);
+
+

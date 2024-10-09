@@ -67,7 +67,7 @@ export default function PsychologistsPage() {
             </div>)}
             {psychologists && <PsychologistsList psychologists={psychologists} />}
             {!isEnd && (
-                <button type='button' className={css.loadMoreBtn} onClick={loadMoreData}>Load more</button>
+                <button type='button' className={css.loadMoreBtn} onClick={loadMoreData} disabled={loading} >{loading ? 'Loading ...' : 'Load more'}</button>
             )}
         </section>
     );

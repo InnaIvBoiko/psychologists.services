@@ -9,6 +9,10 @@ import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import css from './ModalFormRegistration.module.css';
 import { useState } from 'react';
 
+
+import { createAccount } from '../../utils/auth.js';
+
+
 Modal.setAppElement('#root');
 
 const customStyles = {
@@ -51,7 +55,10 @@ export default function ModalFormRegistration({ state, closeModal }) {
         resolver: yupResolver(logInSchema),
     });
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        console.log(data)
+        createAccount(data)
+    };
 
     const handleToggle = () => {
         if (type==='password'){

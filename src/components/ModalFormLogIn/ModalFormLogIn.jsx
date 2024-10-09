@@ -8,6 +8,9 @@ import { IoMdClose } from 'react-icons/io';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import css from './ModalFormLogIn.module.css';
 
+import { loginEmailPassword } from '../../utils/auth.js';
+
+
 Modal.setAppElement('#root');
 
 const customStyles = {
@@ -49,7 +52,10 @@ export default function ModalFormLogIn({ state, closeModal }) {
         resolver: yupResolver(logInSchema),
     });
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        console.log(data)
+        loginEmailPassword(data)
+    };
 
 
     const handleToggle = () => {

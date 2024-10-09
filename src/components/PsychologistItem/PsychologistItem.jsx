@@ -34,8 +34,8 @@ export default function PsychologistItem({ psychologist: {
                             Rating: {rating}
                         </h4>
                         <h3 className={css.price}>Price / 1 hour: <span className={css.accent}>{price_per_hour}$</span> </h3>
-                        <FaRegHeart style={{ color: '#191A15', width: '26px', height: '26px', strokeWidth: '2px' }} />
-                        {/* <FaHeart style={{color: '#54BE96', width: '26px', height: '26px'}} /> */}
+                        <FaRegHeart style={{ color: '#191A15', width: '26px', height: '26px', strokeWidth: '2px', marginRight: '2px' }} />
+                        {/* <FaHeart style={{color: '#54BE96', width: '26px', height: '26px', marginRight: '2px'}} /> */}
                     </div>
                 </div>
                 <ul className={css.experienceList}>

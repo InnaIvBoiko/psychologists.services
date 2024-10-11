@@ -103,6 +103,12 @@
   color: #38cd3e;
 }
 
+.favoriteBtn {
+  border: none;
+  background-color: transparent;
+  padding-right: 4px;
+}
+
 .experienceList {
   display: flex;
   flex-wrap: wrap;

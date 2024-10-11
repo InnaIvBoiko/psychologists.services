@@ -2,35 +2,15 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup'
-import Modal from 'react-modal';
-import { IoMdClose } from 'react-icons/io';
+import * as yup from 'yup';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import css from './ModalFormLogIn.module.css';
 
 import { loginEmailPassword } from '../../utils/auth.js';
 
 
-Modal.setAppElement('#root');
 
-const customStyles = {
-    overlay: {
-        background: 'rgba(25, 26, 21, 0.6)',
-    },
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        borderRadius: '30px',
-        width: '565px',
-        background: '#fbfbfb',
-        padding: '64px',
-        position: 'relative',
-    },
-};
+
 
 const logInSchema = yup.object({
     email: yup.string().nullable().email().required(),
@@ -40,7 +20,7 @@ const logInSchema = yup.object({
     ),
 });
 
-export default function ModalFormLogIn({ state, closeModal }) {
+export default function ModalFormLogIn({onLogin, onIsLogin}) {
     const [type, setType] = useState('password');
     const [passwordIsVisible, setPasswordIsVisible] = useState(false);
     
@@ -54,7 +34,9 @@ export default function ModalFormLogIn({ state, closeModal }) {
 
     const onSubmit = (data) => {
         console.log(data)
-        loginEmailPassword(data)
+        loginEmailPassword(data);
+        onLogin(false);
+        onIsLogin(true);
     };
 
 
@@ -68,17 +50,7 @@ export default function ModalFormLogIn({ state, closeModal }) {
         };
     };
         
-        return (
-            <Modal
-                isOpen={state}
-                onRequestClose={closeModal}
-                style={customStyles}
-            >
-                <button className={css.closeBtn} onClick={closeModal}>
-                    <IoMdClose style={{ color: '#191A15', width: '32px', height: '32px' }} />
-                </button>
-                <h3 className={css.titleModal} >Log In</h3>
-                <p className={css.textModal} >Welcome back! Please enter your credentials to access your account and continue your search for a psychologist.</p>
+    return (
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input {...register('email')} placeholder='Email' className={css.field} />
                     <p className={css.errText} >{errors.email?.message}</p>
@@ -97,6 +69,5 @@ export default function ModalFormLogIn({ state, closeModal }) {
 
                     <button type='submit' className={css.btnSubmit} >Log In</button>
                 </form>
-            </Modal>
         );
 };

@@ -1,26 +1,3 @@
-.closeBtn {
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.titleModal {
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin-bottom: 20px;
-}
-
-.textModal {
-  line-height: 1.25;
-  color: rgba(25, 26, 21, 0.5);
-  max-width: 430px;
-  margin-bottom: 40px;
-}
-
 .btnSubmit {
   border: none;
   border-radius: 30px;

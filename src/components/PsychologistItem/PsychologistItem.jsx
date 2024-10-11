@@ -1,12 +1,13 @@
 import { GoStarFill } from 'react-icons/go';
 import {
     FaRegHeart,
-    // FaHeart
+    FaHeart
  } from 'react-icons/fa6';
 import css from './PsychologistItem.module.css';
 
 
 export default function PsychologistItem({ psychologist: {
+    id,
     avatar_url,
     name,
     rating,
@@ -16,8 +17,10 @@ export default function PsychologistItem({ psychologist: {
     specialization,
     initial_consultation,
     about
-} }) {
-
+},
+    favoritesList,
+    onHandleFavorite }) {
+    
     return (
         <div className={css.card}>
             <div className={css.imgWrap}>
@@ -34,8 +37,11 @@ export default function PsychologistItem({ psychologist: {
                             Rating: {rating}
                         </h4>
                         <h3 className={css.price}>Price / 1 hour: <span className={css.accent}>{price_per_hour}$</span> </h3>
-                        <FaRegHeart style={{ color: '#191A15', width: '26px', height: '26px', marginRight: '4px' }} />
-                        {/* <FaHeart style={{color: '#54BE96', width: '26px', height: '26px', marginRight: '4px'}} /> */}
+                        <button type='button' className={css.favoriteBtn} onClick={() => onHandleFavorite(id) }>
+                            {!Array.isArray(favoritesList) || !favoritesList.includes(id) ?
+                                <FaRegHeart style={{ color: '#191A15', width: '26px', height: '26px' }} /> :
+                                <FaHeart style={{color: '#54BE96', width: '26px', height: '26px' }} />}
+                        </button>
                     </div>
                 </div>
                 <ul className={css.experienceList}>

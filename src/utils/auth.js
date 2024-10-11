@@ -1,25 +1,25 @@
-import { auth } from './firebase.js';
-
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut
-} from "firebase/auth";
+} from 'firebase/auth';
+import { auth } from './firebase.js';
+import { createUser } from './users.js';
 
 
 export const createAccount = async ({ email, password, name }) => {
     const loginEmail = email;
     const loginPassword = password;
-    const displayName = name;
 
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword, displayName);
+        const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
         console.log(userCredential.user);
+        createUser(userCredential.user.uid, name, email);
     } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage)
+        console.log(errorCode, errorMessage);
     };
 };
  
@@ -34,20 +34,35 @@ export const loginEmailPassword = async ({ email, password }) => {
     } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage)
+        console.log(errorCode, errorMessage);
     };
 };
 
-export const monitorAuthState = async () => {
-    await onAuthStateChanged(auth, user => {
+export const monitorAuthState = (setIsLogin, setUserId) => {
+    try {
+        onAuthStateChanged(auth, (user) => {
         if (user) {
-            console.log(user);
+            setUserId(user.uid);
+            setIsLogin(true);
         } else {
-            console.log('You are not logged in')
-        };
+            setIsLogin(false);
+            setUserId(null);
+        }
     });
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+    };
+    
 };
 
 export const logout = async () => {
-    await signOut(auth);
+    try {
+        await signOut(auth);
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+    };
 }; 

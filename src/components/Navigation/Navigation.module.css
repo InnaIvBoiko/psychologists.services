@@ -65,12 +65,36 @@
   transition: background-color 500ms linear;
 }
 
+.registrationBtn:hover,
+.registrationBtn:focus {
+  background-color: #36a379;
+}
+
 .auth {
   display: flex;
   gap: 8px;
 }
 
-.registrationBtn:hover,
-.registrationBtn:focus {
-  background-color: #36a379;
+.userInfo {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.userIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: #54be96;
+}
+
+.username {
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-transform: capitalize;
 }

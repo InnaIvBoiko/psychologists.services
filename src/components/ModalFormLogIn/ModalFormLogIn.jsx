@@ -4,20 +4,15 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
-import css from './ModalFormLogIn.module.css';
-
 import { loginEmailPassword } from '../../utils/auth.js';
-
-
-
-
+import css from './ModalFormLogIn.module.css';
 
 const logInSchema = yup.object({
     email: yup.string().nullable().email().required(),
     password: yup.string().required('Please Enter your password').matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
       'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
-    ),
+    )
 });
 
 export default function ModalFormLogIn({onLogin, onIsLogin}) {
@@ -33,7 +28,6 @@ export default function ModalFormLogIn({onLogin, onIsLogin}) {
     });
 
     const onSubmit = (data) => {
-        console.log(data)
         loginEmailPassword(data);
         onLogin(false);
         onIsLogin(true);
@@ -43,10 +37,10 @@ export default function ModalFormLogIn({onLogin, onIsLogin}) {
     const handleToggle = () => {
         if (type === 'password') {
             setPasswordIsVisible(!passwordIsVisible);
-            setType('text')
+            setType('text');
         } else {
             setPasswordIsVisible(!passwordIsVisible);
-            setType('password')
+            setType('password');
         };
     };
         

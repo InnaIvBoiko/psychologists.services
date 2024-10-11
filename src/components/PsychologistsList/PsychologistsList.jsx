@@ -1,12 +1,18 @@
 import PsychologistItem from '../PsychologistItem/PsychologistItem';
 import css from './PsychologistsList.module.css';
 
-export default function PsychologistsList({psychologists, favoritesList, onHandleFavorite }) {
+export default function PsychologistsList({
+    list,
+    favoritesList,
+    onHandleFavorite }) {
     return (
         <ul className={css.list}>
-            { psychologists.map((item) => (
+            { list.map((item) => (
                 <li key={item.id}>
-                    <PsychologistItem psychologist={item} favoritesList={favoritesList} onHandleFavorite={onHandleFavorite}/>
+                    <PsychologistItem
+                        list={item}
+                        favoritesList={favoritesList}
+                        onHandleFavorite={onHandleFavorite} />
                 </li>
             ))}
         </ul>

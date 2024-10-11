@@ -1,5 +1,5 @@
 import { db } from './firebase.js';
-import { ref, onValue, get, query, limitToFirst, orderByKey, startAfter } from 'firebase/database';
+import { ref, onValue, query, limitToFirst, orderByKey, startAfter } from 'firebase/database';
 
 const itemsPerPage = 3; 
 
@@ -41,22 +41,5 @@ export const loadMoreData = (lastKey, setLoading, setPsychologists, setLastKey, 
             }
             setLoading(false);
         });
-    }
-};
-
-export const getPsychologistById = async (id) => {
-    const psychologistRef = ref(db, `psychologists/${id}`);
-    
-    try {
-        const snapshot = await get(psychologistRef);
-        if (snapshot.exists()) {
-            return snapshot.val();
-        } else {
-            console.log('No data available');
-            return null; 
-        }
-    } catch (error) {
-        console.error('Error fetching psychologist data:', error);
-        return null;
     }
 };

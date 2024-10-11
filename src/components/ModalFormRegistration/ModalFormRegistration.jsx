@@ -5,7 +5,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import { createAccount } from '../../utils/auth.js';
-
 import css from './ModalFormRegistration.module.css';
 
 const logInSchema = yup.object({
@@ -30,7 +29,6 @@ export default function ModalFormRegistration({onRegistration, onIsLogin}) {
     });
 
     const onSubmit = (data) => {
-        console.log(data)
         createAccount(data);
         onRegistration(false);
         onIsLogin(true);
@@ -39,10 +37,10 @@ export default function ModalFormRegistration({onRegistration, onIsLogin}) {
     const handleToggle = () => {
         if (type==='password'){
             setPasswordIsVisible(!passwordIsVisible);
-            setType('text')
+            setType('text');
         } else {
             setPasswordIsVisible(!passwordIsVisible);
-            setType('password')
+            setType('password');
     };
 }
     

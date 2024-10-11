@@ -76,7 +76,9 @@ export default function Navigation() {
                     </div>)}
                 {!isLogin ? 
                     (<ButtonAuth text='Log In' onModalLogIn={() => setLoginIsOpen(true)} />) : 
-                    (<ButtonAuth text='Log out' onModalLogIn={handleLogout}/>)
+                    (<NavLink to={'/'} >
+                        <ButtonAuth text='Log out' onModalLogIn={handleLogout}/>
+                    </NavLink>)
                 }
                 {!isLogin && (<button type='button' className={css.registrationBtn} onClick={() => setRegistrationIsOpen(true)} >Registration</button>)}
             </div>

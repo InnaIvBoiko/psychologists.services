@@ -5,7 +5,6 @@ import PsychologistsList from '../../components/PsychologistsList/PsychologistsL
 import { loadInitialData, loadMoreData } from '../../utils/psychologists.js';
 import { monitorAuthState } from '../../utils/auth.js';
 import { getFavoritesList, updateUserFavorites } from '../../utils/users.js';
-
 import css from './PsychologistsPage.module.css';
 
 export default function PsychologistsPage() {
@@ -13,6 +12,7 @@ export default function PsychologistsPage() {
     const [isLogin, setIsLogin] = useState(false);
     const [userId, setUserId] = useState(null);
     const [favoritesList, setFavoritesList] = useState([]);
+    const [favoritesListId, setFavoritesListId] = useState([]);
     const [lastKey, setLastKey] = useState(null);
     const [loading, setLoading] = useState(false);
     const [isEnd, setIsEnd] = useState(false);
@@ -26,23 +26,29 @@ export default function PsychologistsPage() {
         const fetchFavoritesList = async () => {
             if (userId) {
                 const favoritesData = await getFavoritesList(userId);
-                setFavoritesList(favoritesData);
+                setFavoritesList(favoritesData || []);
+                const idList = favoritesData.map((item) => item.id);
+                setFavoritesListId(idList);
             };
         };
         fetchFavoritesList();
     }, [userId]);
 
-    const handleFavorite = (id) => {
-       
+    const handleFavorite = (item) => {
         if (isLogin) {
-            console.log(favoritesList);
-            const newFavoritesList = favoritesList.includes(id) ? favoritesList.filter((el) => el !== id) : favoritesList.push(id);
+            let newFavoritesList = [];
+            if (favoritesList.includes(item.id)) {
+                newFavoritesList = favoritesList.filter((el) => el !== item.id);
+            } else {
+                newFavoritesList = [...favoritesList, item];
+            }
             updateUserFavorites(userId, newFavoritesList);
             setFavoritesList(newFavoritesList);
+            setFavoritesListId(newFavoritesList.map((el) => el.id));
         } else {
             console.log('You need to be authorized for using this option');
-       }
-    }
+        };
+    };
 
     return (
         <section className={css.container}>
@@ -50,9 +56,18 @@ export default function PsychologistsPage() {
             {loading && (<div className={css.spinner}>
                 <PulseSpinner size={60} color='#54be96'/>
             </div>)}
-            {psychologists && <PsychologistsList psychologists={psychologists} favoritesList={favoritesList} onHandleFavorite={handleFavorite} />}
+            {psychologists && <PsychologistsList
+                list={psychologists}
+                favoritesList={favoritesListId}
+                onHandleFavorite={handleFavorite} />}
             {!isEnd && (
-                <button type='button' className={css.loadMoreBtn} onClick={()=>loadMoreData(lastKey, setLoading, setPsychologists, setLastKey, setIsEnd)} disabled={loading} >{loading ? 'Loading ...' : 'Load more'}</button>
+                <button
+                    type='button'
+                    className={css.loadMoreBtn}
+                    onClick={() => loadMoreData(lastKey, setLoading, setPsychologists, setLastKey, setIsEnd)}
+                    disabled={loading} >
+                    {loading ? 'Loading ...' : 'Load more'}
+                </button>
             )}
         </section>
     );

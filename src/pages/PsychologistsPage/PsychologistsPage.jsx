@@ -16,11 +16,12 @@ export default function PsychologistsPage() {
     const [lastKey, setLastKey] = useState(null);
     const [loading, setLoading] = useState(false);
     const [isEnd, setIsEnd] = useState(false);
+    const [filter, setFilter] = useState('nameASC');
 
     useEffect(() => {
-        loadInitialData(setLoading, setPsychologists, setLastKey, setIsEnd);
+        loadInitialData(setLoading, setPsychologists, setLastKey, setIsEnd, filter);
         monitorAuthState(setIsLogin, setUserId);
-    }, []);
+    }, [filter]);
 
     useEffect(() => {
         const fetchFavoritesList = async () => {
@@ -52,7 +53,7 @@ export default function PsychologistsPage() {
 
     return (
         <section className={css.container}>
-            <Filters />
+            <Filters value={filter} onSelect={setFilter}/>
             {loading && (<div className={css.spinner}>
                 <PulseSpinner size={60} color='#54be96'/>
             </div>)}

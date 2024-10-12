@@ -1,16 +1,45 @@
 import { db } from './firebase.js';
-import { ref, onValue, query, limitToFirst, orderByKey, startAfter } from 'firebase/database';
+import { ref, onValue, query, limitToFirst, orderByKey, startAfter, orderByChild } from 'firebase/database';
 
 const itemsPerPage = 3; 
 
-export const loadInitialData = (setLoading, setPsychologists, setLastKey, setIsEnd) => {
-        setLoading(true);
-        const psychologistsQuery = query(ref(db, 'psychologists'), orderByKey(), limitToFirst(itemsPerPage));
-        
+export const loadInitialData = (setLoading, setPsychologists, setLastKey, setIsEnd, filter) => {
+    setLoading(true);
+
+    let psychologistsQuery;
+
+    switch(filter) {
+        case 'nameASC': 
+            psychologistsQuery = query(ref(db, 'psychologists'), orderByChild('name'), limitToFirst(itemsPerPage));
+            break;
+        case 'nameDES':
+            psychologistsQuery = query(ref(db, 'psychologists'), orderByChild('name'), limitToFirst(itemsPerPage));
+            break;
+        case 'priceASC': 
+            psychologistsQuery = query(ref(db, 'psychologists'), orderByChild('price_per_hour'), limitToFirst(itemsPerPage));
+            break;
+        case 'priceDES': 
+            psychologistsQuery = query(ref(db, 'psychologists'), orderByChild('price_per_hour'), limitToFirst(itemsPerPage));
+            break;
+        case 'ratingASC': 
+            psychologistsQuery = query(ref(db, 'psychologists'), orderByChild('rating'), limitToFirst(itemsPerPage));
+            break;
+        case 'ratingDES': 
+            psychologistsQuery = query(ref(db, 'psychologists'), orderByChild('rating'), limitToFirst(itemsPerPage));
+            break;
+        default:
+            psychologistsQuery = query(ref(db, 'psychologists'), orderByKey(), limitToFirst(itemsPerPage));
+    }
+    
     onValue(psychologistsQuery, (snapshot) => {
         const data = snapshot.val();
         if (data) {
-            const fetchedData = Object.entries(data).map(([key, value]) => ({ key, ...value }));
+            let fetchedData = Object.entries(data).map(([key, value]) => ({ key, ...value }));
+
+            if (filter === 'nameDES' || filter === 'priceDES' || filter === 'ratingDES') {
+                fetchedData = fetchedData.reverse();
+            }
+
             setPsychologists(fetchedData);
             setLastKey(fetchedData[fetchedData.length - 1].key);
         } else {

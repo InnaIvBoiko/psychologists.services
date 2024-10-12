@@ -1,6 +1,8 @@
 .filters {
   margin-bottom: 32px;
+  position: relative;
 }
+
 .title {
   font-weight: 500;
   font-size: 14px;
@@ -14,7 +16,8 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 14px;
-  padding: 16px 18px;
+  padding-left: 18px;
+  padding-right: 0;
   width: 226px;
   height: 48px;
   font-weight: 500;
@@ -22,9 +25,14 @@
   line-height: 1.25;
   color: #fbfbfb;
   background-color: #54be96;
+  border: none;
+  cursor: pointer;
 }
 
 .arrowBtn {
+  position: absolute;
+  left: 190px;
+  top: 30px;
   border: none;
-  background-color: transparent;
+  background-color: #54be96;
 }

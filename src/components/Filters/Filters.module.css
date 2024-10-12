@@ -1,6 +1,9 @@
 .filters {
   margin-bottom: 32px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .title {
@@ -8,7 +11,6 @@
   font-size: 14px;
   line-height: 1.29;
   color: #8a8a89;
-  margin-bottom: 8px;
 }
 
 .toggler {
@@ -29,10 +31,14 @@
   cursor: pointer;
 }
 
+.toggler:focus {
+  outline: transparent;
+}
+
 .arrowBtn {
   position: absolute;
   left: 190px;
-  top: 30px;
+  top: 38px;
   border: none;
   background-color: #54be96;
 }

@@ -20,7 +20,7 @@ export default function PsychologistItem({
             </div>
             <div className={css.infoWrap}>
                 <div className={css.row}>
-                    <h2 className={css.name}><span className={css.title}>Psychologist</span>{list.name}</h2>
+                    <h2 className={css.name}><span className={css.title}>Psychologist</span>Dr. {list.name}</h2>
                     <div className={css.info}>
                         <h4 className={css.rating}>
                             <span className={css.iconWrap}>

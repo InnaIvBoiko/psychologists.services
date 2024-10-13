@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { PulseSpinner } from 'react-spinners-kit';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 import Filters from '../../components/Filters/Filters.jsx';
 import PsychologistsList from '../../components/PsychologistsList/PsychologistsList.jsx';
 import { loadInitialData, loadMoreData } from '../../utils/psychologists.js';
 import { monitorAuthState } from '../../utils/auth.js';
 import { getFavoritesList, updateUserFavorites } from '../../utils/users.js';
+import 'react-toastify/dist/ReactToastify.css';
 import css from './PsychologistsPage.module.css';
 
 export default function PsychologistsPage() {
@@ -17,6 +19,8 @@ export default function PsychologistsPage() {
     const [loading, setLoading] = useState(false);
     const [isEnd, setIsEnd] = useState(false);
     const [filter, setFilter] = useState('nameASC');
+
+     const notify = () => toast.warning('You need to be authorized for using this option');
 
     useEffect(() => {
         loadInitialData(setLoading, setPsychologists, setLastKey, setIsEnd, filter);
@@ -47,7 +51,7 @@ export default function PsychologistsPage() {
             setFavoritesList(newFavoritesList);
             setFavoritesListId(newFavoritesList.map((el) => el.id));
         } else {
-            console.log('You need to be authorized for using this option');
+            notify();
         };
     };
 
@@ -70,6 +74,19 @@ export default function PsychologistsPage() {
                     {loading ? 'Loading ...' : 'Load more'}
                 </button>
             )}
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme='light'
+                transition={Bounce}
+            />
         </section>
     );
 }

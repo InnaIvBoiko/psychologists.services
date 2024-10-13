@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
+import { GoClock } from 'react-icons/go';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { GoClock } from 'react-icons/go';
 import css from './ModalFormAppointment.module.css';
 
 const phoneRegExp = /^\+\d{2}\d{3}\d{3}\d{4}$/;
@@ -16,7 +16,7 @@ const appointmentSchema = yup.object({
     comment: yup.string().required()
 });
 
-export default function ModalFormAppointment({ onAppointment, name, avatar }) {
+export default function ModalFormAppointment({ onAppointment, name, avatar, onNotify }) {
     const {
         register,
         handleSubmit,
@@ -26,6 +26,7 @@ export default function ModalFormAppointment({ onAppointment, name, avatar }) {
     });
 
     const onSubmit = (data) => {
+        onNotify();
         console.log(data);
         onAppointment(false);
     };
@@ -68,7 +69,7 @@ export default function ModalFormAppointment({ onAppointment, name, avatar }) {
                 <textarea {...register('comment')} placeholder='Comment' className={css.comment} />
                 <p className={css.errText} >{errors.comment?.message}</p>
 
-                <button type='submit' className={css.appointmentBtn}>
+                <button type='submit' className={css.appointmentBtn} >
                     Send
                 </button>
             </form>

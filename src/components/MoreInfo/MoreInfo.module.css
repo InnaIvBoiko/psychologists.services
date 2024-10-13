@@ -1,0 +1,67 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 48px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.char {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  width: 44px;
+  height: 44px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  color: #54be96;
+  background: rgba(84, 190, 150, 0.2);
+}
+
+.name {
+  font-weight: 500;
+  line-height: 1.25;
+  color: #191a15;
+  margin-bottom: 4px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+}
+
+.comment {
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.5);
+}
+
+.appointmentBtn {
+  border-radius: 30px;
+  padding: 14px 32px;
+  width: 228px;
+  height: 48px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+  background: #54be96;
+  border: none;
+}

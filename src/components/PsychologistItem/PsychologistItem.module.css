@@ -127,4 +127,23 @@
 .about {
   line-height: 1.25;
   color: rgba(25, 26, 21, 0.5);
+  margin-bottom: 14px;
+}
+
+.readMoreBtn {
+  background-color: transparent;
+  border: none;
+  font-family: var(--font-family);
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #191a15;
+  padding: 0;
+  transition: color 500ms linear;
+}
+
+.readMoreBtn:hover,
+.readMoreBtn:focus {
+  color: #54be96;
 }

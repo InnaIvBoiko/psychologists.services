@@ -25,6 +25,10 @@
   margin-top: 18px;
 }
 
+.field:focus {
+  outline: transparent;
+}
+
 .errText {
   color: #54be96;
 }

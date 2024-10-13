@@ -1,16 +1,18 @@
+import { useState } from 'react';
 import { GoStarFill } from 'react-icons/go';
 import {
     FaRegHeart,
     FaHeart
  } from 'react-icons/fa6';
 import css from './PsychologistItem.module.css';
-
+import MoreInfo from '../MoreInfo/MoreInfo';
 
 export default function PsychologistItem({
     list,
     favoritesList,
-    onHandleFavorite
+    onHandleFavorite,
 }) {
+    const [moreActive, setMoreActive] = useState(false);
     const isFavorite = favoritesList.includes(list.id);
 
     return (
@@ -29,22 +31,26 @@ export default function PsychologistItem({
                             Rating: {list.rating}
                         </h4>
                         <h3 className={css.price}>Price / 1 hour: <span className={css.accent}>{list.price_per_hour}$</span> </h3>
-                        <button type='button' className={css.favoriteBtn} onClick={() => onHandleFavorite(list) }>
+                        <button type='button' className={css.favoriteBtn} onClick={() => onHandleFavorite(list)}>
                             {isFavorite ?
                                 <FaHeart style={{ color: '#54BE96', width: '26px', height: '26px' }} /> :
                                 <FaRegHeart style={{ color: '#191A15', width: '26px', height: '26px' }} />
-                            }                            
+                            }
                         </button>
                     </div>
                 </div>
                 <ul className={css.experienceList}>
-                    <li className={css.experienceItem}><h3 className={css.data}><span className={css.title}>Experience:</span> { list.experience }</h3></li>
-                    <li className={css.experienceItem}><h3 className={css.data}><span className={css.title}>License:</span> { list.license }</h3></li>
-                    <li className={css.experienceItem}><h3 className={css.data}><span className={css.title}>Specialization: </span> { list.specialization }</h3></li>
-                    <li className={css.experienceItem}><h3 className={css.data}><span className={css.title}>Initial_consultation:</span> { list.initial_consultation } </h3></li>
-                </ul>list
-                <p className={css.about}>{ list.about }</p>
+                    <li className={css.experienceItem}><h3 className={css.data}><span className={css.title}>Experience:</span> {list.experience}</h3></li>
+                    <li className={css.experienceItem}><h3 className={css.data}><span className={css.title}>License:</span> {list.license}</h3></li>
+                    <li className={css.experienceItem}><h3 className={css.data}><span className={css.title}>Specialization: </span> {list.specialization}</h3></li>
+                    <li className={css.experienceItem}><h3 className={css.data}><span className={css.title}>Initial_consultation:</span> {list.initial_consultation} </h3></li>
+                </ul>
+                <p className={css.about}>{list.about}</p>
+                {moreActive ?
+                    <MoreInfo list={list} /> :
+                    <button type='button' className={css.readMoreBtn} onClick={ () => {setMoreActive(!moreActive)}}>Read more</button>
+                }
             </div>
         </div>
-    )
+    );
 }

@@ -43,7 +43,7 @@ export default function ModalWindow({ state,
             <p className={css.textModal} > {text} </p>
             <p className={css.message}> {message} </p>
             
-            {children};
+            {children}
         
         </Modal>
     );  

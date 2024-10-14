@@ -45,7 +45,7 @@ export default function Navigation() {
     return (
         <header className={css.mainHeader}>
             <nav className={css.navWrap}>
-                <Link to='/'>
+                <Link to='/' className={css.linkLogo}>
                     <Logo />
                 </Link>
                 <ul className={css.navMenu}>

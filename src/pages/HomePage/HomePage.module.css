@@ -3,18 +3,21 @@
   gap: 24px;
   justify-content: space-between;
   margin-bottom: 100px;
+  flex-wrap: wrap;
 }
 
 .info {
-  width: 595px;
+  min-width: 288px;
+  max-width: 595px;
 }
 
 .title {
+  max-width: 390px;
   font-weight: 600;
-  font-size: 80px;
+  font-size: 40px;
   line-height: 1.02;
   letter-spacing: -0.02em;
-  margin: 126px 0 20px 0;
+  margin: 40px 0 20px 0;
 }
 
 .accent {
@@ -23,7 +26,8 @@
 }
 
 .text {
-  width: 500px;
+  min-width: 288px;
+  max-width: 500px;
   font-weight: 500;
   font-size: 18px;
   line-height: 133%;
@@ -56,7 +60,7 @@
 
 .photo {
   position: relative;
-  width: 464px;
+  min-width: 288px;
   height: 526px;
   border-radius: 10px;
   margin-top: 78px;
@@ -66,7 +70,7 @@
 }
 
 .block {
-  display: flex;
+  display: none;
   gap: 16px;
   position: absolute;
   left: -100px;
@@ -129,14 +133,31 @@
   transform: rotate(15deg);
 }
 
-.blur {
-  position: absolute;
-  bottom: -264px;
-  right: -166px;
-  width: 468px;
-  height: 468px;
-  border-radius: 50%;
-  background-color: #54be96;
-  filter: blur(1000px);
-  z-index: -1;
+@media screen and (min-resolution: 192dpi) and (min-width: 768px),
+  screen and (min-resolution: 2dppx) and (min-width: 768px),
+  screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
+  .title {
+    font-size: 80px;
+    margin: 126px 0 20px 0;
+  }
+
+  .photo {
+    width: 464px;
+  }
+
+  .block {
+    display: flex;
+  }
+
+  .blur {
+    position: absolute;
+    bottom: -264px;
+    right: -166px;
+    width: 468px;
+    height: 468px;
+    border-radius: 50%;
+    background-color: #54be96;
+    filter: blur(1000px);
+    z-index: -1;
+  }
 }

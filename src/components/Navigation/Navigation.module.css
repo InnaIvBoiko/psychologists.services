@@ -1,31 +1,38 @@
 .mainHeader {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 24px 0;
+  gap: 32px;
+}
+
+.linkLogo {
+  margin-right: 70px;
 }
 
 .mainHeader::after {
   position: absolute;
   content: '';
-  width: 1440px;
+  width: calc(100% + 32px);
   height: 1px;
   background-color: rgba(25, 26, 21, 0.1);
   bottom: 0;
-  left: -128px;
+  left: -16px;
 }
 
 .navWrap {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 24px;
 }
 
 .navMenu {
   display: flex;
   justify-content: space-between;
   gap: 40px;
-  margin-left: 190px;
 }
 
 .navMenuItem {
@@ -97,4 +104,25 @@
   line-height: 1.25;
   letter-spacing: -0.01em;
   text-transform: capitalize;
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 768px),
+  screen and (min-resolution: 2dppx) and (min-width: 768px),
+  screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
+  .mainHeader::after {
+    width: calc(100% + 64px);
+    left: -32px;
+  }
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 1440px),
+  screen and (min-resolution: 2dppx) and (min-width: 1440px),
+  screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
+  .mainHeader::after {
+    width: 1440px;
+    left: -128px;
+  }
+  .linkLogo {
+    margin-right: 190px;
+  }
 }

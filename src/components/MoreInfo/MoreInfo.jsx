@@ -13,13 +13,13 @@ export default function MoreInfo({ list: {
 
 } }) {
     const [appointmentIsOpen, setAppointmentIsOpen] = useState(false);
-    const notify = () => toast.success('Your application has been successfully sent. You will be contacted soon!');
+    const notify = () => toast.success('Your appointment has been successfully sent. You will be contacted soon for details!');
 
     return (
         <div className={css.wrap}>
             <ul className={css.list}>
-                {reviews.map((item) => (
-                    <li key={item.key}>
+                {reviews.map((item, index) => (
+                    <li key={item.key || index}>
                         <div className={css.row}> 
                             <span className={css.char}>{item.reviewer.charAt(0)}</span>
                             <div>
@@ -43,7 +43,7 @@ export default function MoreInfo({ list: {
                 title='Make an appointment with a psychologists'
                 text='You are on the verge of changing your life for the better. Fill out the short form below to book your personal appointment with a professional psychologist. We guarantee confidentiality and respect for your privacy.'
             >
-                <ModalFormAppointment onAppointment={setAppointmentIsOpen} name={name} avatar={avatar_url} onNotify={ notify} />
+                <ModalFormAppointment onAppointment={setAppointmentIsOpen} dr_name={name} avatar={avatar_url} onNotify={ notify} />
             </ModalWindow>
             <ToastContainer
                 position="top-center"

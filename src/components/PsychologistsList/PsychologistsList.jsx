@@ -8,7 +8,7 @@ export default function PsychologistsList({
     return (
         <ul className={css.list}>
             { list.map((item) => (
-                <li key={item.key}>
+                <li key={item.id}>
                     <PsychologistItem
                         list={item}
                         favoritesList={favoritesList}

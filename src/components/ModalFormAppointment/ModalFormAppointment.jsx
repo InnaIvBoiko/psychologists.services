@@ -2,12 +2,13 @@ import { useForm } from 'react-hook-form';
 import { GoClock } from 'react-icons/go';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { createAppointment } from '../../utils/appointment';
 import css from './ModalFormAppointment.module.css';
 
 const phoneRegExp = /^\+\d{2}\d{3}\d{3}\d{4}$/;
 
 const appointmentSchema = yup.object({
-    name: yup.string().min(3).max(30).required(),
+    username: yup.string().min(3).max(30).required(),
     phone: yup.string()
         .matches(phoneRegExp, 'Phone number should be "+xxxxxxxxxxxx"')
         .required('This field is required!'),
@@ -16,7 +17,7 @@ const appointmentSchema = yup.object({
     comment: yup.string().required()
 });
 
-export default function ModalFormAppointment({ onAppointment, name, avatar, onNotify }) {
+export default function ModalFormAppointment({ onAppointment, dr_name, avatar, onNotify }) {
     const {
         register,
         handleSubmit,
@@ -28,20 +29,21 @@ export default function ModalFormAppointment({ onAppointment, name, avatar, onNo
     const onSubmit = (data) => {
         onNotify();
         console.log(data);
+        createAppointment(data, dr_name)
         onAppointment(false);
     };
 
     return (
         <>
             <div className={css.psychologists}>
-                <img src={avatar} alt={name} className={css.avatarImg} />
+                <img src={avatar} alt={dr_name} className={css.avatarImg} />
                 <h3 className={css.name} >
                     <span className={css.text}>Your psychologists</span>
-                    Dr. {name}</h3>
+                    Dr. {dr_name}</h3>
 
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className={css.form} >
-                <input {...register('name')} placeholder='Name' className={css.field} />
+                <input {...register('username')} placeholder='Name' className={css.field} />
                 <p className={css.errText} >{errors.name?.message}</p>
 
                 <input {...register('phone')} placeholder='+380' className={css.halfField} />

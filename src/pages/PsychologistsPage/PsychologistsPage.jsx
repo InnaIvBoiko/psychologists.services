@@ -18,7 +18,7 @@ export default function PsychologistsPage() {
     const [lastKey, setLastKey] = useState(null);
     const [loading, setLoading] = useState(false);
     const [isEnd, setIsEnd] = useState(false);
-    const [filter, setFilter] = useState('nameASC');
+    const [filter, setFilter] = useState('all');
 
      const notify = () => toast.warning('You need to be authorized for using this option');
 

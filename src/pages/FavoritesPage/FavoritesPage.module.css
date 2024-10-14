@@ -28,3 +28,21 @@
 .loadMoreBtn:focus {
   background-color: #36a379;
 }
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: center;
+}
+
+.link {
+  font-size: 32px;
+  color: #54be96;
+  transition: color 500ms linear;
+}
+
+.link:hover,
+.link:focus {
+  color: #36a379;
+}

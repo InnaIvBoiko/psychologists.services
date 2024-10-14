@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { PulseSpinner } from 'react-spinners-kit';
 import Filters from '../../components/Filters/Filters.jsx';
 import PsychologistsList from '../../components/PsychologistsList/PsychologistsList.jsx';
 import { monitorAuthState } from '../../utils/auth.js';
 import { getFavoritesList, updateUserFavorites } from '../../utils/users.js';
 import css from './FavoritesPage.module.css';
+
 
 export default function FavoritesPage() {
     const [isLogin, setIsLogin] = useState(false);
@@ -77,7 +79,17 @@ export default function FavoritesPage() {
                     <PulseSpinner size={60} color='#54be96' />
                 </div>
             )}
-            <Filters value={filter} onSelect={setFilter}/>
+            {favoritesList.length > 0 ?
+                (<Filters value={filter} onSelect={setFilter} />) :
+                (<div className={css.wrap}>
+                    <h3>
+                        There is no data here yet, please select your favorite psychologists from the list...
+                    </h3>
+                    <NavLink to={'/psychologists'} className={css.link}>
+                        Psychologists
+                    </NavLink></div>
+                )
+            }
             {visibleFavorites &&
                 (<PsychologistsList
                     list={visibleFavorites}

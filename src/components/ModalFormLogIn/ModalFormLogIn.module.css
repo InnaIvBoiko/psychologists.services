@@ -39,10 +39,18 @@
   background-color: transparent;
   position: absolute;
   top: 16px;
-  left: 392px;
+  right: 0;
 }
 
 .btnSubmit:hover,
 .btnSubmit:focus {
   background-color: #36a379;
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 768px),
+  screen and (min-resolution: 2dppx) and (min-width: 768px),
+  screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
+  .btnIsVisible {
+    left: 392px;
+  }
 }

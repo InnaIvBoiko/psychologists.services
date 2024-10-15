@@ -28,7 +28,6 @@ export default function ModalFormAppointment({ onAppointment, dr_name, avatar, o
 
     const onSubmit = (data) => {
         onNotify();
-        console.log(data);
         createAppointment(data, dr_name)
         onAppointment(false);
     };

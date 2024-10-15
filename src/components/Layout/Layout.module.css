@@ -12,18 +12,14 @@
   align-items: center;
 }
 
-@media screen and (min-resolution: 192dpi) and (min-width: 375px),
-  screen and (min-resolution: 2dppx) and (min-width: 375px),
-  screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
+@media screen and (min-width: 375px) {
   .container {
     min-width: 375px;
     max-width: 767px;
   }
 }
 
-@media screen and (min-resolution: 192dpi) and (min-width: 768px),
-  screen and (min-resolution: 2dppx) and (min-width: 768px),
-  screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .container {
     min-width: 768px;
     max-width: 1439px;
@@ -31,11 +27,9 @@
   }
 }
 
-@media screen and (min-resolution: 192dpi) and (min-width: 1440px),
-  screen and (min-resolution: 2dppx) and (min-width: 1440px),
-  screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
+@media screen and (min-width: 1440px) {
   .container {
-    width: 1440px;
+    max-width: 1440px;
     padding: 0 128px;
   }
 }

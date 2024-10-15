@@ -106,18 +106,14 @@
   text-transform: capitalize;
 }
 
-@media screen and (min-resolution: 192dpi) and (min-width: 768px),
-  screen and (min-resolution: 2dppx) and (min-width: 768px),
-  screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .mainHeader::after {
     width: calc(100% + 64px);
     left: -32px;
   }
 }
 
-@media screen and (min-resolution: 192dpi) and (min-width: 1440px),
-  screen and (min-resolution: 2dppx) and (min-width: 1440px),
-  screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
+@media screen and (min-width: 1440px) {
   .mainHeader::after {
     width: 1440px;
     left: -128px;

@@ -3,7 +3,7 @@ import { PulseSpinner } from 'react-spinners-kit';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import Filters from '../../components/Filters/Filters.jsx';
 import PsychologistsList from '../../components/PsychologistsList/PsychologistsList.jsx';
-import { loadInitialData, loadMoreData } from '../../utils/psychologists.js';
+import { getInitialData } from '../../utils/psychologists.js';
 import { monitorAuthState } from '../../utils/auth.js';
 import { getFavoritesList, updateUserFavorites } from '../../utils/users.js';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,17 +15,22 @@ export default function PsychologistsPage() {
     const [userId, setUserId] = useState(null);
     const [favoritesList, setFavoritesList] = useState([]);
     const [favoritesListId, setFavoritesListId] = useState([]);
-    const [lastKey, setLastKey] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [isEnd, setIsEnd] = useState(false);
     const [filter, setFilter] = useState('all');
+    const [visibleItem, setVisibleItem] = useState(3);
 
-     const notify = () => toast.warning('You need to be authorized for using this option');
+    const notify = () => toast.warning('You need to be authorized for using this option');
 
     useEffect(() => {
-        loadInitialData(setLoading, setPsychologists, setLastKey, setIsEnd, filter);
+        setLoading(true);
+        const fetchPsychologistsList = async () => {
+                const psychologistsData = await getInitialData();
+                setPsychologists(Object.values(psychologistsData) || []);
+        };
+        fetchPsychologistsList();
         monitorAuthState(setIsLogin, setUserId);
-    }, [filter]);
+        setLoading(false);
+    }, []);
 
     useEffect(() => {
         const fetchFavoritesList = async () => {
@@ -55,6 +60,27 @@ export default function PsychologistsPage() {
         };
     };
 
+    const sortedPsychologists = [...psychologists].sort((a, b) => {
+        switch (filter) {
+            case 'nameASC':
+                return a.name.localeCompare(b.name); 
+            case 'nameDES':
+                return b.name.localeCompare(a.name); 
+            case 'priceASC':
+                return a.price_per_hour - b.price_per_hour; 
+            case 'priceDES':
+                return b.price_per_hour - a.price_per_hour; 
+            case 'ratingASC':
+                return a.rating - b.rating; 
+            case 'ratingDES':
+                return b.rating - a.rating;
+            default:
+                return 0; 
+        };
+    });
+
+    const visiblePsychologists = sortedPsychologists.slice(0, visibleItem);
+
     return (
         <section className={css.container}>
             <Filters value={filter} onSelect={setFilter}/>
@@ -62,18 +88,17 @@ export default function PsychologistsPage() {
                 <PulseSpinner size={60} color='#54be96'/>
             </div>)}
             {psychologists && <PsychologistsList
-                list={psychologists}
+                list={visiblePsychologists}
                 favoritesList={favoritesListId}
                 onHandleFavorite={handleFavorite} />}
-            {!isEnd && (
+            {visibleItem < sortedPsychologists.length && (
                 <button
                     type='button'
                     className={css.loadMoreBtn}
-                    onClick={() => loadMoreData(lastKey, setLoading, setPsychologists, setLastKey, setIsEnd)}
+                    onClick={() => { setVisibleItem(prevItem => prevItem + 3) }}
                     disabled={loading} >
                     {loading ? 'Loading ...' : 'Load more'}
-                </button>
-            )}
+                </button>)}
             <ToastContainer
                 position="top-center"
                 autoClose={5000}

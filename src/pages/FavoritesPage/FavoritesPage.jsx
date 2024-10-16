@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { PulseSpinner } from 'react-spinners-kit';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 import Filters from '../../components/Filters/Filters.jsx';
 import PsychologistsList from '../../components/PsychologistsList/PsychologistsList.jsx';
 import { monitorAuthState } from '../../utils/auth.js';
 import { getFavoritesList, updateUserFavorites } from '../../utils/users.js';
+import 'react-toastify/dist/ReactToastify.css';
 import css from './FavoritesPage.module.css';
 
 
@@ -16,6 +18,8 @@ export default function FavoritesPage() {
     const [loading, setLoading] = useState(false);
     const [filter, setFilter] = useState('all');
     const [visibleItem, setVisibleItem] = useState(3);
+
+    const notify = () => toast.warning('You need to be authorized for using this option');
 
     useEffect(() => {
         monitorAuthState(setIsLogin, setUserId);
@@ -47,7 +51,7 @@ export default function FavoritesPage() {
             setFavoritesList(newFavoritesList);
             setFavoritesListId(newFavoritesList.map((el) => el.id));
         } else {
-            console.log('You need to be authorized for using this option');
+            notify();
         };
     };
 
@@ -103,6 +107,19 @@ export default function FavoritesPage() {
                     disabled={loading} >
                     {loading ? 'Loading ...' : 'Load more'}
                 </button>)}
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme='light'
+                transition={Bounce}
+            />
         </section>
     );
 }
